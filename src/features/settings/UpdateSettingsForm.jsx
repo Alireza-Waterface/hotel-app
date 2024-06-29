@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import useSettings from './useSettings';
 import useUpdateSettings from './useUpdateSettings';
 
@@ -18,16 +20,31 @@ function UpdateSettingsForm() {
       error 
    } = useSettings();
 
+   const [formValues, setFormValues] = useState({
+      minBookingLength: minBookingLength || '',
+      maxBookingLength: maxBookingLength || '',
+      maxGuestsPerBooking: maxGuestsPerBooking || '',
+      breakfastPrice: breakfastPrice || '',
+   });
+
    const { updateSettings, isUpdating } = useUpdateSettings();
 
-   const handleUpdate = (e, field) => {
-      const { value } = e.target;
-
-      if (!value) return;
-
-      updateSettings({
-         [field]: value,
+   useEffect(() => {
+      setFormValues({
+         minBookingLength: minBookingLength || '',
+         maxBookingLength: maxBookingLength || '',
+         maxGuestsPerBooking: maxGuestsPerBooking || '',
+         breakfastPrice: breakfastPrice || '',
       })
+   }, [minBookingLength, maxBookingLength, maxGuestsPerBooking, breakfastPrice]);
+
+   const handleUpdate = (e) => {
+      const { value, name } = e.target;
+
+      if (!value || value == formValues[name]) return;
+      else updateSettings({
+         [name]: value,
+      });
    };
 
    return isLoading ? <Spinner /> : (
@@ -36,36 +53,40 @@ function UpdateSettingsForm() {
             <Input
                type='number'
                id='min-nights'
+               name='minBookingLength'
                defaultValue={minBookingLength}
                disabled={isUpdating}
-               onBlur={e => handleUpdate(e, 'minBookingLength')}
+               onBlur={handleUpdate}
             />
          </FormRow>
          <FormRow label='Maximum nights/booking'>
             <Input
                type='number'
                id='max-nights'
+               name='maxBookingLength'
                defaultValue={maxBookingLength}
                disabled={isUpdating}
-               onBlur={e => handleUpdate(e, 'maxBookingLength')}
+               onBlur={handleUpdate}
             />
          </FormRow>
          <FormRow label='Maximum guests/booking'>
             <Input
                type='number'
                id='max-guests'
+               name='maxGuestsPerBooking'
                defaultValue={maxGuestsPerBooking}
                disabled={isUpdating}
-               onBlur={e => handleUpdate(e, 'maxGuestsPerBooking')}
+               onBlur={handleUpdate}
             />
          </FormRow>
          <FormRow label='Breakfast price'>
             <Input
                type='number'
                id='breakfast-price'
+               name='breakfastPrice'
                defaultValue={breakfastPrice}
                disabled={isUpdating}
-               onBlur={e => handleUpdate(e, 'breakfastPrice')}
+               onBlur={handleUpdate}
             />
          </FormRow>
       </Form>
