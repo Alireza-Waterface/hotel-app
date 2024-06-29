@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 const StyledTable = styled.div`
    border: 1px solid var(--color-grey-200);
@@ -45,7 +46,6 @@ const Footer = styled.footer`
    justify-content: center;
    padding: 1.2rem;
 
-   /* This will hide the footer when it contains no child elements. Possible thanks to the parent selector :has 🎉 */
    &:not(:has(*)) {
       display: none;
    }
@@ -70,6 +70,11 @@ function Table({columns, children}) {
    );
 }
 
+Table.propTypes = {
+   children: PropTypes.array,
+   columns: PropTypes.string,
+};
+
 function Header({children}) {
    const { columns } = useContext(TableContext);
 
@@ -79,6 +84,10 @@ function Header({children}) {
       </StyledHeader>
    );
 }
+
+Header.propTypes = {
+   children: PropTypes.array,
+};
 
 function Row({children}) {
    const { columns } = useContext(TableContext);
@@ -90,13 +99,22 @@ function Row({children}) {
    );
 }
 
-function Body({data, render}) {
+Row.propTypes = {
+   children: PropTypes.array,
+};
+
+function Body({data = [], render}) {
    return data.length ? (
       <StyledBody>{data.map(render)}</StyledBody>
    ) : (
       <Empty>No data to show!</Empty>
    );
 }
+
+Body.propTypes = {
+   data: PropTypes.array.isRequired,
+   render: PropTypes.func.isRequired,
+};
 
 Table.Header = Header;
 Table.Row = Row;

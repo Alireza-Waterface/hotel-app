@@ -25,18 +25,18 @@ const Container = styled.div`
 `;
 
 function AppLayout() {
+	return (
+		<StyledAppLayout>
+			<Header />
+			<Sidebar />
 
-
-	return <StyledAppLayout>
-		<Header />
-		<Sidebar />
-
-		<Main>
-			<Container>
-				<Outlet />
-			</Container>
-		</Main>
-	</StyledAppLayout>
+			<Main>
+				<Container>
+					<Outlet />
+				</Container>
+			</Main>
+		</StyledAppLayout>
+	);
 }
 
 export default AppLayout;
