@@ -14,6 +14,8 @@ import { Toaster } from "react-hot-toast";
 
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Bookings = lazy(() => import('./pages/Bookings'));
+const Booking = lazy(() => import('./pages/Booking'));
+const CheckIn = lazy(() => import('./pages/CheckIn'));
 const Cabins = lazy(() => import('./pages/Cabins'));
 const Login = lazy(() => import('./pages/Login'));
 const Users = lazy(() => import('./pages/Users'));
@@ -26,8 +28,8 @@ const queryClient = new QueryClient({
       queries: {
          staleTime: 0,
          retry: false,
-      }
-   }
+      },
+   },
 });
 
 const App = () => {
@@ -44,6 +46,8 @@ const App = () => {
                      <Route path="/dashboard" element={<Dashboard />} />
                      <Route path="/cabins" element={<Cabins />} />
                      <Route path="/bookings" element={<Bookings />} />
+                     <Route path="/bookings/:bookingId" element={<Booking />} />
+                     <Route path="/check-in/:bookingId" element={<CheckIn />} />
                      <Route path="/users" element={<Users />} />
                      <Route path="/settings" element={<Settings />} />
                      <Route path="/account" element={<Account />} />
