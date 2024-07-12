@@ -1,6 +1,9 @@
 import styled, { css } from "styled-components";
 
 const Heading = styled.h1`
+	font-weight: 600;
+	text-align: left;
+
 	${
 		props =>
 			props.as === 'h1' &&
@@ -25,7 +28,13 @@ const Heading = styled.h1`
 			`
 	}
 
-	font-weight: 600;
+	${
+		props =>
+			props.position === 'center' &&
+			css`
+				text-align: center;
+			`
+	}	
 `;
 
 export default Heading;
