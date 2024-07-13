@@ -16,12 +16,12 @@ function HeaderMenu() {
 
 	return (
 		<StyledHeaderMenu>
-			<li title="Logout"><Logout /></li>
 			<li>
 				<ButtonIcon title="Account" onClick={() => navigate('/account')}>
 					<HiOutlineUser />
 				</ButtonIcon>
 			</li>
+			<li title="Logout"><Logout /></li>
 		</StyledHeaderMenu>
 	);
 }
