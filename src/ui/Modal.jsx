@@ -15,6 +15,7 @@ const StyledModal = styled.div`
    padding: 3.2rem 4rem;
    transition: all 0.5s;
    max-height: 90%;
+   overflow-y: auto;
 `;
 
 const Overlay = styled.div`
@@ -47,9 +48,6 @@ const Button = styled.button`
    & svg {
       width: 2.4rem;
       height: 2.4rem;
-      /* Sometimes we need both */
-      /* fill: var(--color-grey-500);
-      stroke: var(--color-grey-500); */
       color: var(--color-grey-500);
    }
 `;
