@@ -1,9 +1,14 @@
 import Button from "../../ui/Button";
+import SpinnerMini from '../../ui/SpinnerMini';
 
-function CheckOutButton({ bookingId }) {
+import useCheckOut from './useCheckOut';
+
+function CheckOutButton({ bookingID }) {
+   const { checkOut, isCheckingOut } = useCheckOut();
+
    return (
-      <Button variation="primary" size="small">
-         Check out
+      <Button variation="primary" size="small" onClick={() => checkOut(bookingID)} disabled={isCheckingOut}>
+         { isCheckingOut ? <SpinnerMini /> : 'Check-out' }
       </Button>
    );
 }
