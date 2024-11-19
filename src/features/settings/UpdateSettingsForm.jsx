@@ -17,7 +17,6 @@ function UpdateSettingsForm() {
          breakfastPrice,
       } = {},
       isLoading,
-      error 
    } = useSettings();
 
    const [formValues, setFormValues] = useState({

@@ -5,12 +5,14 @@ import useLocalStorageState from '../hooks/useLocalStorageState';
 const ThemeContext = createContext();
 
 function ThemeProvider({children}) {
-	const [isDark, setIsDark] = useLocalStorageState(false, 'isDark');
+	const [isDark, setIsDark] = useLocalStorageState(JSON.parse(localStorage.getItem('isDark')) || true, 'isDark');
 
 	const toggleTheme = () => setIsDark(prev => !prev);
 
 	useEffect(() => {
-		document.documentElement.classList.toggle('dark-mode');
+		const rootClassList = document.documentElement.classList;
+		if (isDark) rootClassList.add('dark-mode');
+		else rootClassList.remove('dark-mode');
 	}, [isDark]);
 
 	return (

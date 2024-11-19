@@ -32,7 +32,7 @@ import { useSearchParams } from "react-router-dom";
 // `;
 
 function CabinTable() {
-   const {cabins, isLoading, error} = useCabins();
+   const {cabins, isLoading} = useCabins();
 
    const [searchParams] = useSearchParams();
 

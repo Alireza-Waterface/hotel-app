@@ -9,22 +9,9 @@ import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 
-// const TableRow = styled.div`
-//    display: grid;
-//    grid-template-columns: 1fr 1fr 2.2fr 1fr 1fr 1fr;
-//    column-gap: 2.4rem;
-//    align-items: center;
-//    padding: 1.4rem 2.4rem;
-
-//    &:not(:last-child) {
-//       border-bottom: 1px solid var(--color-grey-100);
-//    }
-// `;
-
 const Img = styled.img`
   display: block;
   width: 100%;
-  /* aspect-ratio: 3 / 2; */
   object-fit: cover;
   object-position: center;
   transform: scale(1.3) translateX(-3px);
@@ -51,7 +38,7 @@ const Discount = styled.div`
 function CabinRow({cabin}) {
    const { name, maxCapacity, regularPrice, discount, image, id: cabinID, description } = cabin;
 
-   const {deleteCabin, error, isDeleting} = useDeleteCabin();
+   const {deleteCabin, isDeleting} = useDeleteCabin();
    const {createCabin, isCreating} = useCreateCabin();
 
    function duplicateCabin() {
@@ -66,7 +53,6 @@ function CabinRow({cabin}) {
    }
   
    return (
-      // <TableRow role="row">
       <Table.Row>
          <Img src={image} alt={name} />
          <Cabin>{name}</Cabin>

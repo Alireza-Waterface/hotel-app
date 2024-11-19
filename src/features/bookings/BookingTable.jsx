@@ -7,7 +7,7 @@ import Spinner from '../../ui/Spinner';
 import Pagination from "../../ui/Pagination";
 
 function BookingTable() {
-   const { bookings, count, isLoading, error } = useBookings();
+   const { bookings, count, isLoading } = useBookings();
 
    if (isLoading) return <Spinner />;
    if (!bookings?.length) return <Empty resource='Bookings' />;
