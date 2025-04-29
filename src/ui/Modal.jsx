@@ -94,24 +94,10 @@ function Window({ children, name }) {
          </StyledModal>
       </Overlay>;
 
-   return createPortal(Element, document.getElementById('root'));
+   return createPortal(Element, document.getElementById('portal-root'));
 }
 
 Modal.Open = Open;
 Modal.Window = Window;
-
-// function Modal({ children, onClose }) {
-//    const Element = <Overlay onClick={onClose}>
-//          <StyledModal onClick={(e) => e.stopPropagation()}>
-//             <Button onClick={onClose}>
-//                <HiXMark />
-//             </Button>
-
-//             <div>{children}</div>
-//          </StyledModal>
-//       </Overlay>;
-
-//    return createPortal(Element, document.getElementById('root'));
-// }
 
 export default Modal;
